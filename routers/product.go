@@ -55,7 +55,7 @@ func AddProductRoutes(router *gin.Engine, db *sql.DB) *gin.Engine {
 		if err != nil {
 			ctx.JSON(500, gin.H{"error": err.Error()})
 		} else {
-			ctx.Status(200)
+			ctx.Status(204)
 		}
 	})
 

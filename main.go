@@ -27,6 +27,7 @@ func main() {
 	router := gin.Default()
 	database := getDatabase()
 	routers.AddProductRoutes(router, database)
+	routers.AddCartRoutes(router, database)
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())

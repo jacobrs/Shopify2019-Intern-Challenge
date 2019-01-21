@@ -21,15 +21,16 @@ type ProductCreationPayload struct {
 
 // GetAllProducts fetches all products from the database
 func GetAllProducts(db *sql.DB) []Product {
-	return parseProducts("SELECT product_id, title, price, inventory_count FROM products_view", db)
+	return ParseProducts("SELECT product_id, title, price, inventory_count FROM products_view", db)
 }
 
 // GetAllAvailableProducts fetches all products from the database that have at least 1 item in inventory
 func GetAllAvailableProducts(db *sql.DB) []Product {
-	return parseProducts("SELECT product_id, title, price, inventory_count FROM products_view WHERE inventory_count > 0", db)
+	return ParseProducts("SELECT product_id, title, price, inventory_count FROM products_view WHERE inventory_count > 0", db)
 }
 
-func parseProducts(query string, db *sql.DB) []Product {
+// ParseProducts returns an array of products based off of a products_view query
+func ParseProducts(query string, db *sql.DB) []Product {
 	products := []Product{}
 	productRows, err := db.Query(query)
 	if err == nil {
